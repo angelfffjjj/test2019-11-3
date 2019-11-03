@@ -14,6 +14,7 @@
   </head>
   <body>
     <h3>Google Map</h3>
+    <button onclick="go();">Go</button>
     <div id="map"></div>
     <script>
       let map;
@@ -21,12 +22,30 @@
         map = new google.maps.Map(document.getElementById('map'), {//google.maps.Map是一個建構函式
           center: {lat: 24, lng: 121},//lat:北緯，lng:東經
           zoom: 8,//地圖的縮放
-          zoomControl:false,//右下角的控制縮放鑑不見了
-          mapTypeId:google.maps.MapTypeId.SATELLITE//變成衛星雲圖
+          /*zoomControl:false,//右下角的控制縮放鑑不見了*/
+          /*mapTypeId:google.maps.MapTypeId.SATELLITE//變成衛星雲圖*/
         });
+        //建立標示
+        let marker=new google.maps.Marker({
+            position:{lat:25,lng:121.5},
+            map:map
+        });
+        //建立資訊視窗
+        let win=new google.maps.InfoWindow({
+            content:"<b>Address:</b> 世新大學",
+            //position: {lat:25,lng:121.5}
+        });
+        
+        //處理標示的點擊事件
+        marker.addListener("click",function(){
+            win.open(map, marker);//必要的時候才去打開他 在map上執行win //marker:讓東西黏在標示上
+        });
+        
+      }
+      function go(){
+          map.setCenter({lat:26, lng:121.5})//讓中心變成這個座標位置
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"async defer></script>
   </body>
 </html>
