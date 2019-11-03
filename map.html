@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        width:800px;height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Google Map</h3>
+    <div id="map"></div>
+    <script>
+      let map;
+      function initMap() {//告訴地圖初始的設定
+        map = new google.maps.Map(document.getElementById('map'), {//google.maps.Map是一個建構函式
+          center: {lat: 24, lng: 121},//lat:北緯，lng:東經
+          zoom: 8,//地圖的縮放
+          zoomControl:false,//右下角的控制縮放鑑不見了
+          mapTypeId:google.maps.MapTypeId.SATELLITE//變成衛星雲圖
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+    async defer></script>
+  </body>
+</html>
